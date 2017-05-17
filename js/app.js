@@ -1,3 +1,372 @@
+var connectionsObject = {
+  "connections": [
+    {
+      "from": {
+        "station": {
+          "id": "8504221",
+          "name": "Neuchâtel",
+        },
+        "departure": "2017-05-17T05:04:00+0200",
+        "departureTimestamp": 1494990240,
+        "platform": "2",
+      },
+      "to": {
+        "station": {
+          "id": "8507100",
+          "name": "Thun",
+        },
+        "arrival": "2017-05-17T06:22:00+0200",
+        "arrivalTimestamp": 1494994920,
+        "platform": "1",
+      },
+      "duration": "00d01:18:00",
+      "transfers": 1,
+      "sections": [
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8504221",
+              "name": "Neuchâtel",
+            },
+            "departure": "2017-05-17T05:04:00+0200",
+            "departureTimestamp": 1494990240,
+            "platform": "2",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T05:52:00+0200",
+            "arrivalTimestamp": 1494993120,
+            "platform": "13",
+          }
+        },
+        {
+          "walk": {
+            "duration": "00:12:00"
+          },
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T05:52:00+0200",
+            "departureTimestamp": 1494993120,
+            "platform": "",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T06:04:00+0200",
+            "arrivalTimestamp": 1494993840,
+            "platform": "",
+          }
+        },
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T06:04:00+0200",
+            "departureTimestamp": 1494993840,
+            "platform": "2",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507100",
+              "name": "Thun",
+            },
+            "arrival": "2017-05-17T06:22:00+0200",
+            "arrivalTimestamp": 1494994920,
+            "platform": "1",
+          }
+        }
+      ]
+    },
+    {
+      "from": {
+        "station": {
+          "id": "8504221",
+          "name": "Neuchâtel",
+        },
+        "departure": "2017-05-17T05:36:00+0200",
+        "departureTimestamp": 1494992160,
+        "platform": "1B",
+      },
+      "to": {
+        "station": {
+          "id": "8507100",
+          "name": "Thun",
+        },
+        "arrival": "2017-05-17T06:52:00+0200",
+        "arrivalTimestamp": 1494996720,
+        "platform": "1",
+      },
+      "duration": "00d01:16:00",
+      "transfers": 1,
+      "sections": [
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8504221",
+              "name": "Neuchâtel",
+            },
+            "departure": "2017-05-17T05:36:00+0200",
+            "departureTimestamp": 1494992160,
+            "platform": "1B",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T06:26:00+0200",
+            "arrivalTimestamp": 1494995160,
+            "platform": "",
+          }
+        },
+        {
+          "walk": {
+            "duration": "00:08:00"
+          },
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T06:26:00+0200",
+            "departureTimestamp": 1494995160,
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T06:34:00+0200",
+            "arrivalTimestamp": 1494995640,
+            "platform": "",
+            "realtimeAvailability": "RT_BHF",
+          }
+        },
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T06:34:00+0200",
+            "departureTimestamp": 1494995640,
+            "platform": "6",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507100",
+              "name": "Thun",
+            },
+            "arrival": "2017-05-17T06:52:00+0200",
+            "arrivalTimestamp": 1494996720,
+            "platform": "1",
+          }
+        }
+      ]
+    },
+    {
+      "from": {
+        "station": {
+          "id": "8504221",
+          "name": "Neuchâtel",
+        },
+        "departure": "2017-05-17T06:01:00+0200",
+        "departureTimestamp": 1494993660,
+        "platform": "1",
+      },
+      "to": {
+        "station": {
+          "id": "8507100",
+          "name": "Thun",
+        },
+        "arrival": "2017-05-17T07:22:00+0200",
+        "arrivalTimestamp": 1494998520,
+        "platform": "1",
+      },
+      "duration": "00d01:21:00",
+      "transfers": 1,
+      "sections": [
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8504221",
+              "name": "Neuchâtel",
+            },
+            "departure": "2017-05-17T06:01:00+0200",
+            "departureTimestamp": 1494993660,
+            "platform": "1",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T06:52:00+0200",
+            "arrivalTimestamp": 1494996720,
+            "platform": "13C",
+          }
+        },
+        {
+          "walk": {
+            "duration": "00:12:00"
+          },
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T06:52:00+0200",
+            "departureTimestamp": 1494996720,
+            "platform": "",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T07:04:00+0200",
+            "arrivalTimestamp": 1494997440,
+            "platform": "",
+          }
+        },
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T07:04:00+0200",
+            "departureTimestamp": 1494997440,
+            "platform": "4",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507100",
+              "name": "Thun",
+            },
+            "arrival": "2017-05-17T07:22:00+0200",
+            "arrivalTimestamp": 1494998520,
+            "platform": "1",
+          }
+        }
+      ]
+    },
+    {
+      "from": {
+        "station": {
+          "id": "8504221",
+          "name": "Neuchâtel",
+        },
+        "departure": "2017-05-17T06:33:00+0200",
+        "departureTimestamp": 1494995580,
+        "platform": "4",
+      },
+      "to": {
+        "station": {
+          "id": "8507100",
+          "name": "Thun",
+        },
+        "arrival": "2017-05-17T07:46:00+0200",
+        "arrivalTimestamp": 1494999960,
+        "platform": "4",
+      },
+      "duration": "00d01:13:00",
+      "transfers": 1,
+      "sections": [
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8504221",
+              "name": "Neuchâtel",
+            },
+            "departure": "2017-05-17T06:33:00+0200",
+            "departureTimestamp": 1494995580,
+            "platform": "4",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T07:07:00+0200",
+            "arrivalTimestamp": 1494997620,
+            "platform": "13",
+            "realtimeAvailability": "RT_BHF",
+          }
+        },
+        {
+          "walk": {
+            "duration": "00:09:00"
+          },
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T07:07:00+0200",
+            "departureTimestamp": 1494997620,
+            "platform": "",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "arrival": "2017-05-17T07:16:00+0200",
+            "arrivalTimestamp": 1494998160,
+            "platform": "",
+          }
+        },
+        {
+          "walk": null,
+          "departure": {
+            "station": {
+              "id": "8507000",
+              "name": "Bern",
+            },
+            "departure": "2017-05-17T07:16:00+0200",
+            "departureTimestamp": 1494998160,
+            "platform": "8",
+          },
+          "arrival": {
+            "station": {
+              "id": "8507100",
+              "name": "Thun",
+            },
+            "arrival": "2017-05-17T07:46:00+0200",
+            "arrivalTimestamp": 1494999960,
+            "platform": "4",
+          }
+        }
+      ]
+    }
+  ],
+  "from": {
+    "id": "008504221",
+    "name": "Neuchâtel",
+  },
+  "to": {
+    "id": "008507100",
+    "name": "Thun",
+  },
+}
 
 
 $(document).ready(function() {
@@ -17,13 +386,46 @@ $(document).ready(function() {
     let endStation = $('#to-station')[0].value;
 
     // Hit the API
-    getStationIds(fromStation, endStation)
-    .then(getConnections)
-    .then(displayResults)
-    .catch(catchError);
+    // getStationIds(fromStation, endStation)
+    // .then(getConnections)
+    // .then(displayResults)
+    // .catch(catchError);
+
+    // Hit fake but super-fast local "API" (Object above)
+    displayFakeResults(connectionsObject);
   });
 
 });
+
+
+function displayFakeResults(connectionsObject) {
+  console.log(connectionsObject);
+
+  let fr = connectionsObject.from.name;
+  let to = connectionsObject.to.name;
+  let txt = `Here are your train departure times from ${fr} to ${to}:`;
+  let p = $('<p>').text(txt);
+  $('#results').append(p);
+
+  for (let i = 0; i < connectionsObject.connections.length; i++) {
+    let h = $('<h3>').text(`Alternative ${i+1}`);
+    $('#results').append(h);
+
+    let txt = 'Departure: '
+      + connectionsObject.connections[i].from.departure
+      + '<br>Arrival: '
+      + connectionsObject.connections[i].to.arrival;
+    let p = $('<p>').html(txt);
+    $('#results').append(p);
+
+    // Add to table
+    var tr = $('<tr>');
+    tr.append($('<td>').text(connectionsObject.connections[i].from.departure));
+    tr.append($('<td>').text(connectionsObject.connections[i].to.arrival));
+    $('#table-of-connections tbody').append(tr);
+  }
+
+}
 
 
 function getStationIds(fromStationName, endStationName) {
