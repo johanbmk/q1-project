@@ -1,31 +1,39 @@
-const stationBaseURL = 'http://transport.opendata.ch/v1/locations?type=station&query=';
+let formData = {fromStation: 'neuchatel', endStation: 'thun'};
 
-function connectionsURL(startStationId, endStationId) {
-  return `http://transport.opendata.ch/v1/connections?from=${startStationId}&to=${endStationId}`;
+getStationIds(formData.fromStation, formData.endStation)
+  .then(getConnections)
+  .then(displayResults)
+  .catch(catchError);
+
+function getStationIds(fromStationName, endStationName) {
+  const baseURL = 'http://transport.opendata.ch/v1/locations?type=station&query=';
+  let fromStation = getJsonFromFetch(baseURL + fromStationName);
+  let endStation = getJsonFromFetch(baseURL + endStationName);
+  return Promise.all([fromStation, endStation]);
 }
 
-let startStationURL = stationBaseURL + 'neuchatel';
-let endStationURL = stationBaseURL + 'thun';
+function getConnections(stations) {
+  let stationIds = stations.map(stationObj => stationObj.stations[0].id);
+  let connURL = connectionsURL(...stationIds);
+  return getJsonFromFetch(connURL)
+}
 
-let startStation = fetch(startStationURL);
-let endStation = fetch(endStationURL);
+function displayResults(connectionsObject) {
+  let message = `From ${connectionsObject.from.name} to ${connectionsObject.to.name} departing at ${connectionsObject.connections[0].from.departure}.`;
+  console.log(message);
+  let newParagraph = document.createElement('p').innerText = message;
+  document.querySelector('#results').append(newParagraph);
+}
 
-Promise.all([startStation, endStation])
-  .then(resolvedValues => {
-    let jsonPromises = resolvedValues.map(resolvedValue => resolvedValue.json())
-    return Promise.all(jsonPromises);
-  })
-  .then(resolvedObjects => {
-    let stationIds = resolvedObjects.map(resolvedObj => resolvedObj.stations[0].id)
-    return Promise.all(stationIds);
-  })
-  .then(stationIds => {
-    let connURL = connectionsURL(...stationIds);
-    return fetch(connURL);
-  })
-  .then(response => response.json())
-  .then(connectionsObject => {
-    console.log(`From ${connectionsObject.from.name} to ${connectionsObject.to.name} departing at ${connectionsObject.connections[0].from.departure}.`);
-  })
-  // .catch(err => throw new Error(err))
-;
+function catchError(err) {
+  throw new Error(err);
+}
+
+function getJsonFromFetch(url) {
+  return fetch(url)
+    .then(response => response.json());
+}
+
+function connectionsURL(fromStationId, endStationId) {
+  return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}`;
+}
