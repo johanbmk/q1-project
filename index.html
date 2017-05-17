@@ -1,15 +1,147 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="js/app.js"></script>
-  </head>
-  <body>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
 
-    <div id="results">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    </div>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
-  </body>
-</html>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <!-- Local styles -->
+      <link rel="stylesheet" href="css/app.css">
+    </head>
+
+    <body>
+
+      <!-- Navigation bar -->
+      <nav>
+        <div class="nav-wrapper green darken-3">
+          <a href="#" class="brand-logo">Test</a>
+          <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="active"><a href="order.html">A link</a></li>
+          </ul>
+          <ul class="left side-nav" id="mobile-menu">
+            <li><a href="index.html">Home Page</a></li>
+            <li class="active"><a href="order.html">A Link</a></li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+      <!-- Grid area -->
+      <div class="container">
+
+        <div class="row">
+
+          <!-- Left side -->
+          <div class="col s12 m6 l6">
+            <h4 class="black-text">Where do you want to go?</h4>
+
+            <!-- Customer data input form -->
+            <form action="index.html" method="post" id="delivery-form">
+
+              <!-- Depart from -->
+              <div class="row valign-wrapper">
+                <div class="col s1 m1 l1">
+                  <i class="material-icons red-text text-darken-2">business</i>
+                </div>
+                <div class="input-field col s11 m11 l11">
+                  <select id="from-station">
+                    <option value="" disabled selected>Choose your train</option>
+                    <option value="neuchatel">Neuch&acirc;tel</option>
+                    <option value="thun">Thun</option>
+                  </select>
+                  <label>Depart from:</label>
+                </div>
+              </div>
+
+              <!-- Arrive to -->
+              <div class="row valign-wrapper">
+                <div class="col s1 m1 l1">
+                  <i class="material-icons red-text text-darken-2">business</i>
+                </div>
+                <div class="input-field col s11 m11 l11">
+                  <select id="to-station">
+                    <option value="" disabled selected>Choose your train</option>
+                    <option value="neuchatel">Neuch&acirc;tel</option>
+                    <option value="thun">Thun</option>
+                  </select>
+                  <label>Arrive to:</label>
+                </div>
+              </div>
+
+            <!-- Search button -->
+            <div class="row">
+              <div class="col s9 m9 l9 right">
+                <a href="#" id="search-button" class="btn-large green lighten-1">Search</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side -->
+          <div class="col s12 m6 l6">
+            <h4 class="black-text">Here are your connections:</h4>
+            <p id="from-and-to"></p>
+            <table class="striped" id="table-of-orders">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+              <tfoot>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Footer -->
+      <footer class="page-footer green darken-3">
+        <div class="container">
+          <div class="row">
+            <div class="col s12 m6 l6">
+              <h5 class="white-text">The Train Guide</h5>
+              <p class="grey-text text-lighten-4">What train do you want to catch next?</p>
+            </div>
+            <div class="col s12 m4 l4 offset-m2 offset-l2">
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="index.html">Home</a></li>
+                <li><a class="grey-text text-lighten-3" href="order.html">Link..</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright green darken-4">
+          <div class="container">
+            &copy; 2017 The Train Guide
+          </div>
+        </div>
+      </footer>
+
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+      <!-- App code -->
+      <script type="text/javascript" src="js/app.js"></script>
+
+    </body>
+  </html>

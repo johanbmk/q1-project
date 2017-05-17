@@ -1,9 +1,30 @@
-let formData = {fromStation: 'neuchatel', endStation: 'thun'};
 
-getStationIds(formData.fromStation, formData.endStation)
-  .then(getConnections)
-  .then(displayResults)
-  .catch(catchError);
+
+$(document).ready(function() {
+
+  // For Materialize Select form elements
+  $('select').material_select();
+
+  // To make a hamburger menu for small screens
+  $(".button-collapse").sideNav();
+
+  // Search button. Event listener and handler.
+  $('#search-button').click((event) => {
+    event.preventDefault(); // so <a href="#"> does not scroll
+
+    // Get form data
+    let fromStation = $('#from-station')[0].value;
+    let endStation = $('#to-station')[0].value;
+
+    // Hit the API
+    getStationIds(fromStation, endStation)
+    .then(getConnections)
+    .then(displayResults)
+    .catch(catchError);
+  });
+
+});
+
 
 function getStationIds(fromStationName, endStationName) {
   const baseURL = 'http://transport.opendata.ch/v1/locations?type=station&query=';
@@ -12,27 +33,34 @@ function getStationIds(fromStationName, endStationName) {
   return Promise.all([fromStation, endStation]);
 }
 
+
 function getConnections(stations) {
   let stationIds = stations.map(stationObj => stationObj.stations[0].id);
   let connURL = connectionsURL(...stationIds);
   return getJsonFromFetch(connURL)
 }
 
+
 function displayResults(connectionsObject) {
-  let message = `From ${connectionsObject.from.name} to ${connectionsObject.to.name} departing at ${connectionsObject.connections[0].from.departure}.`;
-  console.log(message);
-  let newParagraph = document.createElement('p').innerText = message;
-  document.querySelector('#results').append(newParagraph);
+  console.log(connectionsObject);
+
+  // DOM
+  // let message = `From ${connectionsObject.from.name} to ${connectionsObject.to.name} departing at ${connectionsObject.connections[0].from.departure}.`;
+  // let newParagraph = document.createElement('p').innerText = message;
+  // $('#results').append(newParagraph);
 }
+
 
 function catchError(err) {
   throw new Error(err);
 }
 
+
 function getJsonFromFetch(url) {
   return fetch(url)
     .then(response => response.json());
 }
+
 
 function connectionsURL(fromStationId, endStationId) {
   return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}`;
