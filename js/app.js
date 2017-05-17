@@ -6,29 +6,26 @@ function connectionsURL(startStationId, endStationId) {
 
 let startStationURL = stationBaseURL + 'neuchatel';
 let endStationURL = stationBaseURL + 'thun';
-var startStationId;
-var endStationId;
 
-let request = fetch(startStationURL);
+let startStation = fetch(startStationURL);
+let endStation = fetch(endStationURL);
 
-request
-  .then(response => response.json())
-  .then(obj => {
-    startStationId = obj.stations[0].id;
-    return fetch(endStationURL);
+Promise.all([startStation, endStation])
+  .then(resolvedValues => {
+    let jsonPromises = resolvedValues.map(resolvedValue => resolvedValue.json())
+    return Promise.all(jsonPromises);
   })
-  .then(response => response.json())
-  .then(obj => {
-    endStationId = obj.stations[0].id;
-    let connURL = connectionsURL(startStationId, endStationId);
+  .then(resolvedObjects => {
+    let stationIds = resolvedObjects.map(resolvedObj => resolvedObj.stations[0].id)
+    return Promise.all(stationIds);
+  })
+  .then(stationIds => {
+    let connURL = connectionsURL(...stationIds);
     return fetch(connURL);
   })
   .then(response => response.json())
-  .then(obj => {
-    console.log(`From ${obj.from.name} to ${obj.to.name} departing at ${obj.connections[0].from.departure}.`);
+  .then(connectionsObject => {
+    console.log(`From ${connectionsObject.from.name} to ${connectionsObject.to.name} departing at ${connectionsObject.connections[0].from.departure}.`);
   })
+  // .catch(err => throw new Error(err))
 ;
-
-// Works. But time could be saved by doing
-// fetch(startStationURL) and fetch(endStationURL)
-// in parallel.
