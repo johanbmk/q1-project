@@ -392,40 +392,10 @@ $(document).ready(function() {
     // .catch(catchError);
 
     // Hit fake but super-fast local "API" (Object above)
-    displayFakeResults(connectionsObject);
+    displayResults(connectionsObject);
   });
 
 });
-
-
-function displayFakeResults(connectionsObject) {
-  console.log(connectionsObject);
-
-  let fr = connectionsObject.from.name;
-  let to = connectionsObject.to.name;
-  let txt = `Here are your train departure times from ${fr} to ${to}:`;
-  let p = $('<p>').text(txt);
-  $('#results').append(p);
-
-  for (let i = 0; i < connectionsObject.connections.length; i++) {
-    let h = $('<h3>').text(`Alternative ${i+1}`);
-    $('#results').append(h);
-
-    let txt = 'Departure: '
-      + connectionsObject.connections[i].from.departure
-      + '<br>Arrival: '
-      + connectionsObject.connections[i].to.arrival;
-    let p = $('<p>').html(txt);
-    $('#results').append(p);
-
-    // Add to table
-    var tr = $('<tr>');
-    tr.append($('<td>').text(connectionsObject.connections[i].from.departure));
-    tr.append($('<td>').text(connectionsObject.connections[i].to.arrival));
-    $('#table-of-connections tbody').append(tr);
-  }
-
-}
 
 
 function getStationIds(fromStationName, endStationName) {
@@ -446,10 +416,29 @@ function getConnections(stations) {
 function displayResults(connectionsObject) {
   console.log(connectionsObject);
 
-  // DOM
-  // let message = `From ${connectionsObject.from.name} to ${connectionsObject.to.name} departing at ${connectionsObject.connections[0].from.departure}.`;
-  // let newParagraph = document.createElement('p').innerText = message;
-  // $('#results').append(newParagraph);
+  let coob = connectionsObject; // shorter name
+  let fr = coob.from.name;
+  let to = coob.to.name;
+  let txt = `Here are your choices for train departure times from ${fr} to ${to}:`;
+  $('#from-and-to').text(txt);
+
+  for (let i = 0; i < coob.connections.length; i++) {
+    // Add to results table
+    let [depDate, depTime] = chopUpTime(coob.connections[i].from.departure);
+    let [arrDate, arrTime] = chopUpTime(coob.connections[i].to.arrival);
+    let tr = $('<tr>');
+    tr.append($('<td>').text(depDate));
+    tr.append($('<td>').text(depTime));
+    tr.append($('<td>').text(arrTime));
+    $('#table-of-connections tbody').append(tr);
+  }
+
+}
+
+
+function chopUpTime(dateAndTimeString) {
+  let pieces = dateAndTimeString.match(/(.+)T(\d+:\d+)/)
+  return [pieces[1], pieces[2]];
 }
 
 
