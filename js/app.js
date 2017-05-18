@@ -3,9 +3,6 @@ $(document).ready(function() {
   // For Materialize 'Select' form elements
   $('select').material_select();
 
-  // For Materialize small screens hamburger menu
-  $(".button-collapse").sideNav();
-
   // For Materialize date picker
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -19,13 +16,12 @@ $(document).ready(function() {
     // Get form data
     let fromStation = $('#from-station')[0].value;
     let endStation = $('#to-station')[0].value;
-
-    // TRY
     let dateString = $('#date')[0].value;
     var date = inputDateConvert(dateString);
+    let time = $('#time')[0].value;
 
     // Hit the API
-    getStationIds(fromStation, endStation, date)
+    getStationIds(fromStation, endStation, date, time)
     .then(getConnections)
     .then(displayResults)
     .catch(catchError);
@@ -42,18 +38,19 @@ function inputDateConvert(dateString) {
 }
 
 
-function getStationIds(fromStationName, endStationName, date) {
+function getStationIds(fromStationName, endStationName, date, time) {
   const baseURL = 'http://transport.opendata.ch/v1/locations?type=station&query=';
   let fromStation = getJsonFromFetch(baseURL + fromStationName);
   let endStation = getJsonFromFetch(baseURL + endStationName);
-  return Promise.all([fromStation, endStation, date]);
+  return Promise.all([fromStation, endStation, date, time]);
 }
 
 
 function getConnections(queryParams) {
+  let time = queryParams.pop();
   let date = queryParams.pop();
   let stationIds = queryParams.map(stationObj => stationObj.stations[0].id);
-  let connURL = connectionsURL(...stationIds, date);
+  let connURL = connectionsURL(...stationIds, date, time);
   return getJsonFromFetch(connURL);
 }
 
@@ -95,6 +92,6 @@ function getJsonFromFetch(url) {
 }
 
 
-function connectionsURL(fromStationId, endStationId, date) {
-  return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}&date=${date}`;
+function connectionsURL(fromStationId, endStationId, date, time) {
+  return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}&date=${date}&time=${time}`;
 }
