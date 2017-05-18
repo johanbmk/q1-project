@@ -42,7 +42,7 @@
         <div class="row">
 
           <!-- Left side -->
-          <div class="col s12 m6 l6">
+          <div class="col s12 m6 l5">
             <h4 class="black-text">Where do you want to go?</h4>
 
             <!-- Customer data input form -->
@@ -51,11 +51,11 @@
               <!-- Input: Depart from -->
               <div class="row valign-wrapper">
                 <div class="col s1 m1 l1">
-                  <i class="material-icons red-text text-darken-2">business</i>
+                  <i class="material-icons red-text text-darken-2">location_on</i>
                 </div>
                 <div class="input-field col s11 m11 l11">
                   <select id="from-station">
-                    <option value="" disabled selected>Choose your train</option>
+                    <option value="" disabled selected>Choose train station you want to leave from</option>
                     <option value="neuchatel">Neuch&acirc;tel</option>
                     <option value="thun">Thun</option>
                   </select>
@@ -66,11 +66,11 @@
               <!-- Input: Arrive to -->
               <div class="row valign-wrapper">
                 <div class="col s1 m1 l1">
-                  <i class="material-icons red-text text-darken-2">business</i>
+                  <i class="material-icons red-text text-darken-2">location_on</i>
                 </div>
                 <div class="input-field col s11 m11 l11">
                   <select id="to-station">
-                    <option value="" disabled selected>Choose your train</option>
+                    <option value="" disabled selected>Choose the train station you want to go to</option>
                     <option value="neuchatel">Neuch&acirc;tel</option>
                     <option value="thun">Thun</option>
                   </select>
@@ -87,7 +87,7 @@
           </div>
 
           <!-- Right side -->
-          <div class="col s12 m6 l6">
+          <div class="col s12 m6 l6 right">
             <h4 class="black-text">Connections:</h4>
             <p id="from-and-to"></p>
             <table class="striped" id="table-of-connections">
