@@ -6,6 +6,12 @@ $(document).ready(function() {
   // For Materialize small screens hamburger menu
   $(".button-collapse").sideNav();
 
+  // For Materialize date picker
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
   // Search button. Event listener and handler.
   $('#search-button').click((event) => {
     event.preventDefault(); // so <a href="#"> does not scroll
@@ -14,8 +20,12 @@ $(document).ready(function() {
     let fromStation = $('#from-station')[0].value;
     let endStation = $('#to-station')[0].value;
 
+    // TRY
+    let dateString = $('#date')[0].value;
+    var date = inputDateConvert(dateString);
+
     // Hit the API
-    getStationIds(fromStation, endStation)
+    getStationIds(fromStation, endStation, date)
     .then(getConnections)
     .then(displayResults)
     .catch(catchError);
@@ -24,18 +34,27 @@ $(document).ready(function() {
 });
 
 
-function getStationIds(fromStationName, endStationName) {
-  const baseURL = 'http://transport.opendata.ch/v1/locations?type=station&query=';
-  let fromStation = getJsonFromFetch(baseURL + fromStationName);
-  let endStation = getJsonFromFetch(baseURL + endStationName);
-  return Promise.all([fromStation, endStation]);
+function inputDateConvert(dateString) {
+  let d1 = Date.parse(dateString);
+  let d2 = new Date(d1);
+  let d3 = d2.toISOString(); // 2017-05-18T07:00:00.000Z
+  return chopUpTime(d3)[0];
 }
 
 
-function getConnections(stations) {
-  let stationIds = stations.map(stationObj => stationObj.stations[0].id);
-  let connURL = connectionsURL(...stationIds);
-  return getJsonFromFetch(connURL)
+function getStationIds(fromStationName, endStationName, date) {
+  const baseURL = 'http://transport.opendata.ch/v1/locations?type=station&query=';
+  let fromStation = getJsonFromFetch(baseURL + fromStationName);
+  let endStation = getJsonFromFetch(baseURL + endStationName);
+  return Promise.all([fromStation, endStation, date]);
+}
+
+
+function getConnections(queryParams) {
+  let date = queryParams.pop();
+  let stationIds = queryParams.map(stationObj => stationObj.stations[0].id);
+  let connURL = connectionsURL(...stationIds, date);
+  return getJsonFromFetch(connURL);
 }
 
 
@@ -76,6 +95,6 @@ function getJsonFromFetch(url) {
 }
 
 
-function connectionsURL(fromStationId, endStationId) {
-  return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}`;
+function connectionsURL(fromStationId, endStationId, date) {
+  return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}&date=${date}`;
 }

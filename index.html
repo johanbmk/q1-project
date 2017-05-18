@@ -1,159 +1,173 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <title></title>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
 
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-      <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-      <!-- Local styles -->
-      <link rel="stylesheet" href="css/app.css">
-    </head>
+    <!-- Local styles -->
+    <link rel="stylesheet" href="css/app.css">
+  </head>
 
-    <body>
+  <body>
 
-      <!-- Navigation bar -->
-      <nav>
-        <div class="nav-wrapper green darken-3">
-          <a href="#" class="brand-logo">Train Connection</a>
-        </div>
-      </nav>
+    <!-- Navigation bar -->
+    <nav>
+      <div class="nav-wrapper green darken-3">
+        <a href="#" class="brand-logo">Train Connection</a>
+      </div>
+    </nav>
 
 
 
-      <!-- Grid area with right and left margins -->
-      <div class="container">
+    <!-- Grid area with right and left margins -->
+    <div class="container">
 
-        <div class="row">
+      <div class="row">
 
-          <!-- Left side -->
-          <div class="col s12 m5 l5">
-            <h4 class="black-text">Where to?</h4>
+        <!-- Left side -->
+        <div class="col s12 m5 l5">
+          <h4 class="black-text">Where to?</h4>
 
-            <!-- Customer data input form -->
-            <form action="index.html" method="post" id="delivery-form">
+          <!-- Customer data input form -->
+          <form action="index.html" method="post" id="user-form">
 
-              <!-- Input: Depart from -->
-              <div class="row valign-wrapper">
-                <div class="col s1 m1 l1">
-                  <i class="material-icons red-text text-darken-2">location_on</i>
-                </div>
-                <div class="input-field col s11 m11 l11">
-                  <select id="from-station">
-                    <option value="" disabled selected>Choose train station to leave from</option>
-                    <option value="basel">Basel</option>
-                    <option value="bern">Bern</option>
-                    <option value="fribourg">Fribourg</option>
-                    <option value="geneva airport">Geneva Airport</option>
-                    <option value="geneva">Geneva</option>
-                    <option value="interlaken">Interlaken</option>
-                    <option value="la chaux de fonds">La Chaux-de-Fonds</option>
-                    <option value="lausanne">Lausanne</option>
-                    <option value="lucerne">Lucerne</option>
-                    <option value="lugano">Lugano</option>
-                    <option value="montreux">Montreux</option>
-                    <option value="neuchatel">Neuch&acirc;tel</option>
-                    <option value="thun">Thun</option>
-                    <option value="zurich airport">Zurich Airport</option>
-                    <option value="zurich">Zurich</option>
-                  </select>
-                  <label>Depart from:</label>
-                </div>
+            <!-- Input: Depart from -->
+            <div class="row valign-wrapper">
+              <div class="col s1 m1 l1">
+                <i class="material-icons red-text text-darken-2">location_on</i>
               </div>
-
-              <!-- Input: Arrive to -->
-              <div class="row valign-wrapper">
-                <div class="col s1 m1 l1">
-                  <i class="material-icons red-text text-darken-2">location_on</i>
-                </div>
-                <div class="input-field col s11 m11 l11">
-                  <select id="to-station">
-                    <option value="" disabled selected>Choose train station to go to</option>
-                    <option value="basel">Basel</option>
-                    <option value="bern">Bern</option>
-                    <option value="fribourg">Fribourg</option>
-                    <option value="geneva airport">Geneva Airport</option>
-                    <option value="geneva">Geneva</option>
-                    <option value="interlaken">Interlaken</option>
-                    <option value="la chaux de fonds">La Chaux-de-Fonds</option>
-                    <option value="lausanne">Lausanne</option>
-                    <option value="lucerne">Lucerne</option>
-                    <option value="lugano">Lugano</option>
-                    <option value="montreux">Montreux</option>
-                    <option value="neuchatel">Neuch&acirc;tel</option>
-                    <option value="thun">Thun</option>
-                    <option value="zurich airport">Zurich Airport</option>
-                    <option value="zurich">Zurich</option>
-                  </select>
-                  <label>Arrive to:</label>
-                </div>
-              </div>
-
-            <!-- Search button -->
-            <div class="row">
-              <div class="col s8 m9 l9 right">
-                <a href="#" id="search-button" class="btn-large green lighten-1">Search</a>
+              <div class="input-field col s11 m11 l11">
+                <select id="from-station">
+                  <option value="" disabled selected>Choose train station to leave from</option>
+                  <option value="basel">Basel</option>
+                  <option value="bern">Bern</option>
+                  <option value="fribourg">Fribourg</option>
+                  <option value="geneva airport">Geneva Airport</option>
+                  <option value="geneva">Geneva</option>
+                  <option value="interlaken">Interlaken</option>
+                  <option value="la chaux de fonds">La Chaux-de-Fonds</option>
+                  <option value="lausanne">Lausanne</option>
+                  <option value="lucerne">Lucerne</option>
+                  <option value="lugano">Lugano</option>
+                  <option value="montreux">Montreux</option>
+                  <option value="neuchatel">Neuch&acirc;tel</option>
+                  <option value="thun">Thun</option>
+                  <option value="zurich airport">Zurich Airport</option>
+                  <option value="zurich">Zurich</option>
+                </select>
+                <label>Depart from:</label>
               </div>
             </div>
-          </div>
 
-          <!-- Right side -->
-          <div class="col s12 m6 l6 right">
-            <h4 class="black-text">Your connections:</h4>
-            <p id="from-and-to"></p>
-            <table class="striped" id="table-of-connections">
-              <thead>
-                <tr>
-                  <th>Departure Date</th>
-                  <th>Departure Time</th>
-                  <th>Arrival Time</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-              <tfoot>
-              </tfoot>
-            </table>
+            <!-- Input: Arrive to -->
+            <div class="row valign-wrapper">
+              <div class="col s1 m1 l1">
+                <i class="material-icons red-text text-darken-2">location_on</i>
+              </div>
+              <div class="input-field col s11 m11 l11">
+                <select id="to-station">
+                  <option value="" disabled selected>Choose train station to go to</option>
+                  <option value="basel">Basel</option>
+                  <option value="bern">Bern</option>
+                  <option value="fribourg">Fribourg</option>
+                  <option value="geneva airport">Geneva Airport</option>
+                  <option value="geneva">Geneva</option>
+                  <option value="interlaken">Interlaken</option>
+                  <option value="la chaux de fonds">La Chaux-de-Fonds</option>
+                  <option value="lausanne">Lausanne</option>
+                  <option value="lucerne">Lucerne</option>
+                  <option value="lugano">Lugano</option>
+                  <option value="montreux">Montreux</option>
+                  <option value="neuchatel">Neuch&acirc;tel</option>
+                  <option value="thun">Thun</option>
+                  <option value="zurich airport">Zurich Airport</option>
+                  <option value="zurich">Zurich</option>
+                </select>
+                <label>Arrive to:</label>
+              </div>
+            </div>
+
+            <!-- Input: Date -->
+            <div class="row valign-wrapper">
+              <div class="col s1 m1 l1">
+                <i class="material-icons red-text text-darken-2">query_builder</i>
+              </div>
+              <div class="input-field col s11 m11 l11">
+                <input type=date id="date" class="datepicker">
+                <label>Date:</label>
+              </div>
+            </div>
+
+          </form>
+
+          <!-- Search button -->
+          <div class="row">
+            <div class="col s8 m9 l9 right">
+              <a href="#" id="search-button" class="btn-large green lighten-1">Search</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side -->
+        <div class="col s12 m6 l6 right">
+          <h4 class="black-text">Your connections:</h4>
+          <p id="from-and-to"></p>
+          <table class="striped" id="table-of-connections">
+            <thead>
+              <tr>
+                <th>Departure Date</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
+        </div>
+
+      </div> <!-- main row -->
+    </div><!-- container -->
+
+
+
+    <!-- Footer -->
+    <footer class="page-footer green darken-3">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l6">
+            <h5 class="white-text">The Train Connection</h5>
+            <p class="grey-text text-lighten-4">What train do you want to catch next?</p>
           </div>
         </div>
       </div>
-
-
-
-      <!-- Footer -->
-      <footer class="page-footer green darken-3">
+      <div class="footer-copyright green darken-4">
         <div class="container">
-          <div class="row">
-            <div class="col s12 m6 l6">
-              <h5 class="white-text">The Train Connection</h5>
-              <p class="grey-text text-lighten-4">What train do you want to catch next?</p>
-            </div>
-          </div>
+          &copy; 2017 The Train Connection
         </div>
-        <div class="footer-copyright green darken-4">
-          <div class="container">
-            &copy; 2017 The Train Connection
-          </div>
-        </div>
-      </footer>
+      </div>
+    </footer>
 
 
 
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-      <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
-      <!-- App code -->
-      <script type="text/javascript" src="js/app.js"></script>
+    <!-- App code -->
+    <script type="text/javascript" src="js/app.js"></script>
 
-    </body>
-  </html>
+  </body>
+</html>
