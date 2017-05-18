@@ -22,7 +22,7 @@
       <!-- Navigation bar -->
       <nav>
         <div class="nav-wrapper green darken-3">
-          <a href="#" class="brand-logo">Test</a>
+          <a href="#" class="brand-logo">Train Connection</a>
           <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="active"><a href="order.html">A link</a></li>
@@ -42,8 +42,8 @@
         <div class="row">
 
           <!-- Left side -->
-          <div class="col s12 m6 l5">
-            <h4 class="black-text">Where do you want to go?</h4>
+          <div class="col s12 m5 l5">
+            <h4 class="black-text">Where to?</h4>
 
             <!-- Customer data input form -->
             <form action="index.html" method="post" id="delivery-form">
@@ -55,9 +55,22 @@
                 </div>
                 <div class="input-field col s11 m11 l11">
                   <select id="from-station">
-                    <option value="" disabled selected>Choose train station you want to leave from</option>
+                    <option value="" disabled selected>Choose train station to leave from</option>
+                    <option value="basel">Basel</option>
+                    <option value="bern">Bern</option>
+                    <option value="fribourg">Fribourg</option>
+                    <option value="geneva airport">Geneva Airport</option>
+                    <option value="geneva">Geneva</option>
+                    <option value="interlaken">Interlaken</option>
+                    <option value="la chaux de fonds">La Chaux-de-Fonds</option>
+                    <option value="lausanne">Lausanne</option>
+                    <option value="lucerne">Lucerne</option>
+                    <option value="lugano">Lugano</option>
+                    <option value="montreux">Montreux</option>
                     <option value="neuchatel">Neuch&acirc;tel</option>
                     <option value="thun">Thun</option>
+                    <option value="zurich airport">Zurich Airport</option>
+                    <option value="zurich">Zurich</option>
                   </select>
                   <label>Depart from:</label>
                 </div>
@@ -70,9 +83,22 @@
                 </div>
                 <div class="input-field col s11 m11 l11">
                   <select id="to-station">
-                    <option value="" disabled selected>Choose the train station you want to go to</option>
+                    <option value="" disabled selected>Choose train station to go to</option>
+                    <option value="basel">Basel</option>
+                    <option value="bern">Bern</option>
+                    <option value="fribourg">Fribourg</option>
+                    <option value="geneva airport">Geneva Airport</option>
+                    <option value="geneva">Geneva</option>
+                    <option value="interlaken">Interlaken</option>
+                    <option value="la chaux de fonds">La Chaux-de-Fonds</option>
+                    <option value="lausanne">Lausanne</option>
+                    <option value="lucerne">Lucerne</option>
+                    <option value="lugano">Lugano</option>
+                    <option value="montreux">Montreux</option>
                     <option value="neuchatel">Neuch&acirc;tel</option>
                     <option value="thun">Thun</option>
+                    <option value="zurich airport">Zurich Airport</option>
+                    <option value="zurich">Zurich</option>
                   </select>
                   <label>Arrive to:</label>
                 </div>
@@ -88,7 +114,7 @@
 
           <!-- Right side -->
           <div class="col s12 m6 l6 right">
-            <h4 class="black-text">Connections:</h4>
+            <h4 class="black-text">Your connections:</h4>
             <p id="from-and-to"></p>
             <table class="striped" id="table-of-connections">
               <thead>
@@ -127,7 +153,7 @@
         </div>
         <div class="footer-copyright green darken-4">
           <div class="container">
-            &copy; 2017 The Train Guide
+            &copy; 2017 The Train Connection
           </div>
         </div>
       </footer>
