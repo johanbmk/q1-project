@@ -40,12 +40,9 @@ function getConnections(stations) {
 
 
 function displayResults(connectionsObject) {
-  console.log(connectionsObject);
-
   let coob = connectionsObject; // shorter name
-  let fr = coob.from.name;
-  let to = coob.to.name;
-  let txt = `Here are your choices for train departure times from ${fr} to ${to}:`;
+
+  let txt = `Here are your choices for train departure times from ${coob.from.name} to ${coob.to.name}:`;
   $('#from-and-to').text(txt);
 
   for (let i = 0; i < coob.connections.length; i++) {
