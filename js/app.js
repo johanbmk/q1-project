@@ -1,25 +1,23 @@
 class UserSearch {
   constructor() {
-    this.setDefaultDate();
   }
 
   setDefaultDate() {
     let date = new Date();
-    let dateString = chopUpTime(date.toISOString())[0];
-    $('#date').val(dateString);
+    let dateString = date.toISOString(); // Format: 2017-02-28T14:48:00.000Z
+    $('#date').val(dateConvert('US', dateString)); // Format: 02/28/2017
   }
 
   getFormData() {
     this.fromStationName = $('#from-station')[0].value;
     this.endStationName = $('#to-station')[0].value;
     let dateString = $('#date')[0].value;
-    // var date = inputDateConvert(dateString);
-    this.date = dateString;
-    this.time = $('#time')[0].value;
-    if (!this.date) {
-      // Date cleared by user. Resetting to default.
+    if (!dateString) {
       this.setDefaultDate();
+      dateString = $('#date')[0].value;
     }
+    this.date = dateConvert('ISO', dateString);
+    this.time = $('#time')[0].value;
   }
 
   makeAPIRequest() {
@@ -30,8 +28,6 @@ class UserSearch {
   }
 }
 
-var search = new UserSearch();
-
 $(document).ready(function() {
   // For Materialize 'Select' form elements
   $('select').material_select();
@@ -40,12 +36,15 @@ $(document).ready(function() {
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 5, // Creates a dropdown of n years to control year
-    // format: 'mm/dd/yyyy'
-    format: 'yyyy-mm-dd'
+    format: 'mm/dd/yyyy'
   });
+
+  var search = new UserSearch();
+  search.setDefaultDate();
 
   // Search button. Event listener and handler.
   $('#search-button').click((event) => {
+    var search = new UserSearch();
     event.preventDefault(); // so <a href="#"> does not scroll
     search.getFormData();
     search.makeAPIRequest();
@@ -83,8 +82,9 @@ function displayResults(connectionsObject) {
     // Add to results table
     let [depDate, depTime] = chopUpTime(coob.connections[i].from.departure);
     let [arrDate, arrTime] = chopUpTime(coob.connections[i].to.arrival);
+    let depDateUS = dateConvert('US', depDate);
     let tr = $('<tr>');
-    tr.append($('<td>').text(depDate));
+    tr.append($('<td>').text(depDateUS));
     tr.append($('<td>').text(depTime));
     tr.append($('<td>').text(arrTime));
     $('#table-of-connections tbody').append(tr);
@@ -95,6 +95,20 @@ function displayResults(connectionsObject) {
 function chopUpTime(dateAndTimeString) {
   let pieces = dateAndTimeString.match(/(.+)T(\d+:\d+)/)
   return [pieces[1], pieces[2]];
+}
+
+
+function dateConvert(returnFormat, dateString) {
+  if (returnFormat === 'US') {
+    // from 2017-02-28 to 02/28/2017
+    let [discard, yyyy, mm, dd] = dateString.match(/(\d{4})-(\d{2})-(\d{2})/);
+    return `${mm}/${dd}/${yyyy}`;
+  }
+  if (returnFormat === 'ISO') {
+    // from 02/28/2017 to 2017-02-28
+    let [discard, mm, dd, yyyy] = dateString.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+    return `${yyyy}-${mm}-${dd}`;
+  }
 }
 
 
@@ -112,11 +126,3 @@ function getJsonFromFetch(url) {
 function connectionsURL(fromStationId, endStationId, date, time) {
   return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}&date=${date}&time=${time}`;
 }
-
-
-// function inputDateConvert(dateString) {
-//   let d1 = Date.parse(dateString);
-//   let d2 = new Date(d1);
-//   let d3 = d2.toISOString(); // 2017-05-18T07:00:00.000Z
-//   return chopUpTime(d3)[0];
-// }
