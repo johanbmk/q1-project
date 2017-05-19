@@ -109,6 +109,7 @@ function dateConvert(returnFormat, dateString) {
     let [discard, mm, dd, yyyy] = dateString.match(/(\d{2})\/(\d{2})\/(\d{4})/);
     return `${yyyy}-${mm}-${dd}`;
   }
+  return dateString;
 }
 
 
