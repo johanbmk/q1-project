@@ -1,5 +1,38 @@
-$(document).ready(function() {
+class UserSearch {
+  constructor() {
+    this.setDefaultDate();
+  }
 
+  setDefaultDate() {
+    let date = new Date();
+    let dateString = chopUpTime(date.toISOString())[0];
+    $('#date').val(dateString);
+  }
+
+  getFormData() {
+    this.fromStationName = $('#from-station')[0].value;
+    this.endStationName = $('#to-station')[0].value;
+    let dateString = $('#date')[0].value;
+    // var date = inputDateConvert(dateString);
+    this.date = dateString;
+    this.time = $('#time')[0].value;
+    if (!this.date) {
+      // Date cleared by user. Resetting to default.
+      this.setDefaultDate();
+    }
+  }
+
+  makeAPIRequest() {
+    getStationIds(this)
+    .then(getConnections)
+    .then(displayResults)
+    .catch(catchError);
+  }
+}
+
+var search = new UserSearch();
+
+$(document).ready(function() {
   // For Materialize 'Select' form elements
   $('select').material_select();
 
@@ -11,46 +44,20 @@ $(document).ready(function() {
     format: 'yyyy-mm-dd'
   });
 
-  // Default date
-  let date = new Date();
-  let dateString = chopUpTime(date.toISOString())[0];
-  $('#date').val(dateString);
-
   // Search button. Event listener and handler.
   $('#search-button').click((event) => {
     event.preventDefault(); // so <a href="#"> does not scroll
-
-    // Get form data
-    let fromStation = $('#from-station')[0].value;
-    let endStation = $('#to-station')[0].value;
-    let dateString = $('#date')[0].value;
-    // var date = inputDateConvert(dateString);
-    var date = dateString;
-    let time = $('#time')[0].value;
-
-    // Hit the API
-    getStationIds(fromStation, endStation, date, time)
-    .then(getConnections)
-    .then(displayResults)
-    .catch(catchError);
+    search.getFormData();
+    search.makeAPIRequest();
   });
-
 });
 
 
-// function inputDateConvert(dateString) {
-//   let d1 = Date.parse(dateString);
-//   let d2 = new Date(d1);
-//   let d3 = d2.toISOString(); // 2017-05-18T07:00:00.000Z
-//   return chopUpTime(d3)[0];
-// }
-
-
-function getStationIds(fromStationName, endStationName, date, time) {
+function getStationIds(search) {
   const baseURL = 'http://transport.opendata.ch/v1/locations?type=station&query=';
-  let fromStation = getJsonFromFetch(baseURL + fromStationName);
-  let endStation = getJsonFromFetch(baseURL + endStationName);
-  return Promise.all([fromStation, endStation, date, time]);
+  let fromStation = getJsonFromFetch(baseURL + search.fromStationName);
+  let endStation = getJsonFromFetch(baseURL + search.endStationName);
+  return Promise.all([fromStation, endStation, search.date, search.time]);
 }
 
 
@@ -105,3 +112,11 @@ function getJsonFromFetch(url) {
 function connectionsURL(fromStationId, endStationId, date, time) {
   return `http://transport.opendata.ch/v1/connections?from=${fromStationId}&to=${endStationId}&date=${date}&time=${time}`;
 }
+
+
+// function inputDateConvert(dateString) {
+//   let d1 = Date.parse(dateString);
+//   let d2 = new Date(d1);
+//   let d3 = d2.toISOString(); // 2017-05-18T07:00:00.000Z
+//   return chopUpTime(d3)[0];
+// }
