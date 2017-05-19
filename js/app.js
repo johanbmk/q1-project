@@ -69,6 +69,9 @@ function displayResults(connectionsObject) {
   let txt = `Here are your choices for train departure times from ${coob.from.name} to ${coob.to.name}:`;
   $('#from-and-to').text(txt);
 
+  // Clear results table, as there may be old results there
+  $('#table-of-connections tbody').empty();
+
   for (let i = 0; i < coob.connections.length; i++) {
     // Add to results table
     let [depDate, depTime] = chopUpTime(coob.connections[i].from.departure);
@@ -79,7 +82,6 @@ function displayResults(connectionsObject) {
     tr.append($('<td>').text(arrTime));
     $('#table-of-connections tbody').append(tr);
   }
-
 }
 
 
