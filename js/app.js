@@ -6,8 +6,15 @@ $(document).ready(function() {
   // For Materialize date picker
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
+    selectYears: 5, // Creates a dropdown of n years to control year
+    // format: 'mm/dd/yyyy'
+    format: 'yyyy-mm-dd'
   });
+
+  // Default date
+  let date = new Date();
+  let dateString = chopUpTime(date.toISOString())[0];
+  $('#date').val(dateString);
 
   // Search button. Event listener and handler.
   $('#search-button').click((event) => {
@@ -17,7 +24,8 @@ $(document).ready(function() {
     let fromStation = $('#from-station')[0].value;
     let endStation = $('#to-station')[0].value;
     let dateString = $('#date')[0].value;
-    var date = inputDateConvert(dateString);
+    // var date = inputDateConvert(dateString);
+    var date = dateString;
     let time = $('#time')[0].value;
 
     // Hit the API
@@ -30,12 +38,12 @@ $(document).ready(function() {
 });
 
 
-function inputDateConvert(dateString) {
-  let d1 = Date.parse(dateString);
-  let d2 = new Date(d1);
-  let d3 = d2.toISOString(); // 2017-05-18T07:00:00.000Z
-  return chopUpTime(d3)[0];
-}
+// function inputDateConvert(dateString) {
+//   let d1 = Date.parse(dateString);
+//   let d2 = new Date(d1);
+//   let d3 = d2.toISOString(); // 2017-05-18T07:00:00.000Z
+//   return chopUpTime(d3)[0];
+// }
 
 
 function getStationIds(fromStationName, endStationName, date, time) {
